@@ -2,6 +2,7 @@ const express = require('express');
 const bcrypt = require('bcrypt-nodejs');
 const cors = require('cors');
 const knex = require('knex');
+require('dotenv').config();
 
 const register = require('./controllers/register');
 const signin = require('./controllers/signin');
@@ -11,12 +12,13 @@ const image = require('./controllers/image');
 const db = knex({
     client: 'pg',
     connection: {
-        host: '127.0.0.1',
+        host: '{dpg-cfmb94qrrk07m3t1kq90-a}',
+        user: '{faceapi_user}',
+        database: '{faceapi}',
+        password: process.env.DB_PASSWORD,
         port: 5432,
-        user: 'postgres',
-        password: 'Wowan1995!',
-        database: 'smart-brain'
-    }
+        ssl: true,
+    },
 });
 
 const app = express();
