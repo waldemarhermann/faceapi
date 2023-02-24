@@ -1,8 +1,40 @@
-/* const app = new Clarifai.App({
-    apiKey: '4dab164a20414f9d88f24f50a2c7ccfe'
-}); */
 
+
+/*#1
 const {ClarifaiStub, grpc} = require("clarifai-nodejs-grpc");
+
+const stub = ClarifaiStub.grpc();
+
+const metadata = new grpc.Metadata();
+metadata.set("authorization", "Key dccf89db237d4a289a1e30ac87e105a4");
+
+const handleApiCall = (req, res) => {
+    const { input } = req.body;
+    const model = 'd02b4508df58432fbb84e800597b8959';
+
+    stub.PostModelOutputs(
+        {
+            model_id: model,
+            inputs: [{ data: { image: { url: input } } }],
+        },
+        metadata,
+        (err, response) => {
+            if (err) {
+                console.log(err);
+                return res.status(400).json('unable to work with API');
+            }
+            const outputs = response.outputs;
+            if (outputs && outputs.length > 0) {
+                const faceBoxes = outputs[0].data.regions.map(region => region.region_info.bounding_box);
+                return res.json(faceBoxes);
+            } else {
+                return res.status(400).json('unable to work with API');
+            }
+        }
+    );
+} */
+
+/*const {ClarifaiStub, grpc} = require("clarifai-nodejs-grpc");
 
 const stub = ClarifaiStub.grpc();
 
@@ -35,10 +67,16 @@ stub.PostModelOutputs(
         res.json(response)
     }
   );
-}
-  
+} */
 
-    /*app.models
+const Clarifai = require('clarifai');
+
+const app = new Clarifai.App({
+ apiKey: 'dccf89db237d4a289a1e30ac87e105a4' 
+});
+  
+const handleApiCall = (req, res) => {
+    app.models
         .predict(
             {
                 id: 'face-detection',
@@ -49,7 +87,8 @@ stub.PostModelOutputs(
         .then(data => {
             res.json(data);
         })
-        .catch(err => res.status(400).json('unable to connect to API'))*/
+        .catch(err => res.status(400).json('unable to connect to API'))
+    }
 
 
 
