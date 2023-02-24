@@ -1,4 +1,4 @@
-
+//Other possible versions of code to run clarifai
 
 /*#1
 const {ClarifaiStub, grpc} = require("clarifai-nodejs-grpc");
@@ -34,7 +34,9 @@ const handleApiCall = (req, res) => {
     );
 } */
 
-/*const {ClarifaiStub, grpc} = require("clarifai-nodejs-grpc");
+
+/* #2
+const {ClarifaiStub, grpc} = require("clarifai-nodejs-grpc");
 
 const stub = ClarifaiStub.grpc();
 
@@ -89,8 +91,6 @@ const handleApiCall = (req, res) => {
         })
         .catch(err => res.status(400).json('unable to connect to API'))
     }
-
-
 
 
 const handleImage = (req, res, db) => {
